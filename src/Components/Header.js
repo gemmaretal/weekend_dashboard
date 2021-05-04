@@ -5,34 +5,40 @@ const BackgroundContainer = styled.div`
   background-color: white;
   height: 67px;
 `;
-const IconContainer = styled.div``;
+const IconContainer = styled.div`
+@media screen and (max-width: 400px) {
+  margin-left: 32px;
+}
+  margin-left: 213px;
+`;
 
 const Icon = styled.img`
   width: 33px;
   height: 33px;
-  margin: 17px 12px 17px 213px;
-  object-fit: contain;
+  margin-top: 17px;
+  margin-right: 10px;
 `;
 
-const GreetingsText = styled.h3`
-  padding: 12px;
+const GreetingsText = styled.div`
+  padding-top: 10px;
   font-size: 12px;
   font-weight: 300;
-  display: inline-block;
+  display: inline-grid;
 `;
 
-const Name = styled.h2`
+const Name = styled.div`
   font-size: 12px;
   font-weight: 500;
 `;
 function Header() {
   return (
     <BackgroundContainer>
-      <Icon src={Icon1} />
-      <GreetingsText>
-        Good Morning
-        <Name>Fellas</Name>
-      </GreetingsText>
+      <IconContainer>
+        <Icon src={Icon1} />
+        <GreetingsText>
+          Good Morning<Name>Fellas</Name>
+        </GreetingsText>
+      </IconContainer>
     </BackgroundContainer>
   );
 }
