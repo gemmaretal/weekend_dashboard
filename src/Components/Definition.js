@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import ImgLego from '../Images/Lego-2.png';
 import ImgCircle from '../Images/oval.png';
 import Carousels from './Carousels';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 const Background = styled.div`
   @media screen and (max-width: 400px) {
     padding-top: 0;
@@ -15,15 +18,18 @@ const Background = styled.div`
 `;
 
 const TextDefinitionContainer = styled.h3`
-@media screen and (max-width: 400px) {
-  font-size: 16px;
- }
+  @media screen and (max-width: 400px) {
+    font-size: 16px;
+  }
   font-weight: bold;
   font-size: 23px;
   color: #0b24fb;
   display: inline;
 `;
 const WeekendTeamText = styled.div`
+  @media screen and (max-width: 400px) {
+    font-size: 12px;
+  }
   max-width: 721px;
   padding-right: 30px;
   margin-left: auto;
@@ -74,9 +80,9 @@ const ImageLego1 = styled.img`
 `;
 
 const ImageCircle = styled.img`
-@media screen and (max-width: 400px) {
- margin-left: 57px;
-}
+  @media screen and (max-width: 400px) {
+    margin-left: 57px;
+  }
   display: block;
   object-fit: contain;
   margin-right: auto;
@@ -85,12 +91,12 @@ const ImageCircle = styled.img`
 `;
 
 const StepTitle1 = styled.h2`
-@media screen and (max-width: 400px) {
-  margin-left: 32px;
-  margin-top: -30px;
-  // margin-top: 220px;
-  text-align: left;
-}
+  @media screen and (max-width: 400px) {
+    margin-left: 32px;
+    margin-top: -30px;
+
+    text-align: left;
+  }
   width: 188px;
   height: 38px;
   margin-left: auto;
@@ -109,12 +115,15 @@ const StepTitle1 = styled.h2`
   text-align: center;
   color: white;
 `;
-function Definition() {
+function Definition(props) {
+  useEffect(() => {
+    AOS.init({ offset: 200, delay: 50, duration: 1000 });
+  }, []);
   return (
-    <Background>
-      <ImageLego1 src={ImgLego} />
+    <Background ref={props.refProps}>
+      <ImageLego1 src={ImgLego} ref={props.refProps} />
       <ParagraphContainer>
-        <Paragraph>
+        <Paragraph data-aos="fade-up">
           <TextDefinitionContainer>Definition; </TextDefinitionContainer>a
           practice or exercise to test or improve one's fitness for athletic
           competition, ability, or performance to exhaust (something, such as a
@@ -122,9 +131,9 @@ function Definition() {
           difficulties. Merriam-Webster.com Dictionary.
         </Paragraph>
       </ParagraphContainer>
-      <WeekendTeamText>- weekend team</WeekendTeamText>
+      <WeekendTeamText data-aos="fade-up">- weekend team</WeekendTeamText>
       <ImageCircle src={ImgCircle} />
-      <StepTitle1>Testimonial</StepTitle1>
+      <StepTitle1 data-aos="fade-up">Testimonial</StepTitle1>
 
       <Carousels />
     </Background>

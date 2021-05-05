@@ -4,6 +4,8 @@ import Slider from 'react-slick';
 import axios from 'axios';
 import 'slick-carousel/slick/slick.less';
 import 'slick-carousel/slick/slick-theme.less';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const StyledSlider = styled(Slider)`
   .slick-slide > div {
@@ -29,7 +31,6 @@ const Bg = styled.div`
     margin-top: -60px;
     width: 381px;
     height: 194px;
-    overflow: hidden;
   }
   padding-left: 70px;
   padding-right: 45px;
@@ -37,7 +38,7 @@ const Bg = styled.div`
   margin-left: auto;
   margin-right: auto;
   background-color: rgb(0 0 0 / 0%);
-  // background-color: grey;
+
   width: 686px;
   height: 194px;
   overflow: hidden;
@@ -49,10 +50,11 @@ const TestiContainer = styled.div`
   background: #ffffff;
 
   overflow: hidden;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.8);
   transition: 0.3s;
+
   :hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.8);
   }
 `;
 const TestiText = styled.div`
@@ -84,6 +86,7 @@ const TestiCreator = styled.div`
 `;
 
 function Carousels() {
+  AOS.init({ offset: 200, delay: 50, duration: 1000 });
   const [eventsData, setEventsData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -108,23 +111,22 @@ function Carousels() {
     slidesToShow: 2,
     slidesToScroll: 1,
     adaptiveHeight: true,
-
+   
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
-
-          dots: true,
+          slidesToScroll: 1,
+          initialSlide: 0,
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 0,
         },
       },
       {
@@ -132,13 +134,14 @@ function Carousels() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          initialSlide: 0,
         },
       },
     ],
   };
 
   return (
-    <Bg>
+    <Bg data-aos="fade-up">
       <StyledSlider {...settings}>
         {eventsData.map((eventsData, index) => {
           return (

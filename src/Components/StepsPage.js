@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import HelpTips from './HelpTips';
 import BeanImg from '../Images/path-3.png';
-import LegoImg from '../Images/Lego-3.png';
+import Footer from './Footer';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const ImageBean = styled.img`
-@media only screen and (max-width: 400px) {
-display:none;
-}
+  @media only screen and (max-width: 400px) {
+    display: none;
+  }
   height: 195px;
   width: 159px;
   float: right;
@@ -14,18 +16,10 @@ display:none;
   margin-top: -235px;
 `;
 
-const ImageLego = styled.img`
-@media only screen and (max-width: 400px) {
-  margin-top: 74px;
-  }
-  margin-top: -17px;
-  object-fit: contain;
-  margin-right: auto;
-`;
 const BackgroundStyle = styled.div`
-@media screen and (max-width: 400px) {
-  height: 1971px;
-}
+  @media screen and (max-width: 400px) {
+    height: 2038px;
+  }
   background-color: black;
   height: 1406px;
 `;
@@ -101,11 +95,11 @@ const StepTitle3 = styled.h2`
   color: white;
 `;
 const StepTitle4 = styled.h2`
-@media screen and (max-width: 400px) {
-  margin-left: 32px;
-  text-align: left;
-  margin-top: 67px;
-}
+  @media screen and (max-width: 400px) {
+    margin-left: 32px;
+    text-align: left;
+    margin-top: 67px;
+  }
   width: 188px;
   height: 38px;
   margin-top: 127px;
@@ -128,6 +122,7 @@ const ParagraphContainer = styled.div`
   @media screen and (max-width: 400px) {
     margin: 0 32px;
     text-align: left;
+    font-size: 16px;
   }
   max-width: 619px;
   left: 0;
@@ -147,34 +142,37 @@ const ParagraphContainer = styled.div`
 `;
 
 function StepsPage() {
+  useEffect(() => {
+    AOS.init({ offset: 200, delay: 50, duration: 1000 });
+  }, []);
   return (
     <div>
       <BackgroundStyle>
-        <StepTitle1>POV</StepTitle1>
-        <ParagraphContainer>
+        <StepTitle1 data-aos="fade-up">POV</StepTitle1>
+        <ParagraphContainer data-aos="fade-up">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud ullamco laboris nisi ea commodo consequat.
           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
           dolore eu fugiat nulla pariatur.
         </ParagraphContainer>
-        <StepTitle2>Resource</StepTitle2>
-        <ParagraphContainer>
+        <StepTitle2 data-aos="fade-up">Resource</StepTitle2>
+        <ParagraphContainer data-aos="fade-up">
           These cases are perfectly simple and easy to distinguish. In a free
           hour, when our power of choice is untrammelled and when nothing
           prevents our being able to do what we like best
         </ParagraphContainer>
-        <StepTitle3>Help & Tips</StepTitle3>
+        <StepTitle3 data-aos="fade-up">Help & Tips</StepTitle3>
         <HelpTips />
 
         <ImageBean src={BeanImg} />
 
-        <StepTitle4>You're all set.</StepTitle4>
-        <ParagraphContainer>
+        <StepTitle4 data-aos="fade-up">You're all set.</StepTitle4>
+        <ParagraphContainer data-aos="fade-up">
           The wise man therefore always holds in these matters to this principle
           of selection.
         </ParagraphContainer>
-        <ImageLego src={LegoImg} />
+        <Footer />
       </BackgroundStyle>
     </div>
   );
